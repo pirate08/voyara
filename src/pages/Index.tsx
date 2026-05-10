@@ -6,6 +6,7 @@ import { Packages } from "@/components/landing/Packages";
 import { Testimonials } from "@/components/landing/Testimonials";
 import { Contact } from "@/components/landing/Contact";
 import { CtaBanner, Footer } from "@/components/landing/CtaFooter";
+import { TrustBar } from "@/components/landing/TrustBar";
 
 const Index = () => {
   return (
@@ -13,6 +14,7 @@ const Index = () => {
       <Navbar />
       <main>
         <Hero />
+        <TrustBar />
         <Destinations />
         <WhyUs />
         <Packages />
