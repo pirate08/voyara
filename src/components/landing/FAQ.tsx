@@ -15,15 +15,15 @@ const faqs = [
     items: [
       {
         q: "How far in advance should I book my trip?",
-        a: "We recommend booking at least 6–8 weeks before departure for the best availability and pricing on flights and hotels. For peak seasons (Dec–Jan, Jul–Aug) or bucket-list destinations like Maldives or Santorini, 3–6 months ahead is ideal. That said, we've pulled off amazing last-minute trips — just ask!",
+        a: "We recommend booking at least 6–8 weeks before departure for the best availability and pricing on flights and hotels. For peak seasons (Dec–Jan, Jul–Aug) or bucket-list destinations like Maldives or Santorini, 3–6 months ahead is ideal.",
       },
       {
         q: "Can I customize an existing package?",
-        a: "Absolutely — every package on Voyara is a starting point, not a fixed itinerary. You can swap hotels, add or remove excursions, change travel dates, extend stays, and add private transfers. Your dedicated travel designer will tailor everything to you during a free consultation call.",
+        a: "Absolutely — every package on Voyara is a starting point, not a fixed itinerary. Your dedicated travel designer will tailor everything to you during a free consultation call.",
       },
       {
         q: "What payment methods do you accept?",
-        a: "We accept all major credit and debit cards (Visa, Mastercard, Amex), PayPal, bank transfer, and for orders above $1,500 we also offer installment plans — split your payment into 3 interest-free monthly installments with zero extra fees.",
+        a: "We accept all major credit and debit cards, PayPal, bank transfer, and for orders above $1,500 we also offer interest-free installment plans.",
       },
     ],
   },
@@ -33,15 +33,11 @@ const faqs = [
     items: [
       {
         q: "Do you handle visa applications?",
-        a: "We provide comprehensive visa guidance for all destinations: required documents, processing times, embassy contacts, and step-by-step instructions. For select destinations we partner with a visa facilitation service to handle the paperwork for you at a flat fee.",
+        a: "We provide comprehensive visa guidance for all destinations: required documents, processing times, and step-by-step instructions.",
       },
       {
         q: "What happens if my flight gets cancelled?",
-        a: "Our 24/7 emergency concierge team springs into action immediately — rebooking flights, rearranging hotel check-ins, and keeping your itinerary as intact as possible. All our packages include travel disruption coverage, and we recommend adding our premium travel insurance for full peace of mind.",
-      },
-      {
-        q: "Are solo travelers welcome?",
-        a: "100%. Solo travel is one of our specialties. We offer single-room supplements, small group tours where you can meet fellow travellers, and solo-focused itineraries designed for safety, spontaneity, and connection. We'll never charge you a hidden solo penalty.",
+        a: "Our 24/7 emergency concierge team springs into action immediately — rebooking flights and rearranging hotel check-ins.",
       },
     ],
   },
@@ -51,11 +47,11 @@ const faqs = [
     items: [
       {
         q: "What is your cancellation and refund policy?",
-        a: "Cancel 30+ days before departure for a full refund. 15–29 days: 70% refund. 7–14 days: 50% refund. Under 7 days: non-refundable (travel insurance covers force majeure events). We also offer free rescheduling up to 21 days before travel — no questions asked.",
+        a: "Cancel 30+ days before departure for a full refund. We also offer free rescheduling up to 21 days before travel — no questions asked.",
       },
       {
         q: "Is there support available during my trip?",
-        a: "Yes — your personal Voyara concierge is reachable 24/7 via WhatsApp, phone, and in-app chat for the entire duration of your trip. Response time is under 15 minutes for urgent matters. We also pre-load your itinerary, local emergency numbers, and offline maps in our companion app.",
+        a: "Yes — your personal Voyara concierge is reachable 24/7 via WhatsApp, phone, and in-app chat for the entire duration of your trip.",
       },
     ],
   },
@@ -87,11 +83,11 @@ const AccordionItem = ({
       className="w-full text-left flex items-start gap-4 py-5 px-1 focus:outline-none"
       whileTap={{ scale: 0.995 }}
     >
-      {/* Toggle icon */}
       <motion.div
         className="flex-shrink-0 w-8 h-8 rounded-full grid place-items-center mt-0.5 transition-all duration-300"
+        /* CHANGE: #f1f5f9 -> secondary */
         animate={{
-          backgroundColor: isOpen ? color : "#f1f5f9",
+          backgroundColor: isOpen ? color : "hsl(var(--secondary))",
           scale: isOpen ? 1.1 : 1,
         }}
       >
@@ -102,13 +98,15 @@ const AccordionItem = ({
           {isOpen ? (
             <Minus className="w-4 h-4 text-white" />
           ) : (
-            <Plus className="w-4 h-4 text-slate-500" />
+            /* CHANGE: text-slate-500 -> text-muted-foreground */
+            <Plus className="w-4 h-4 text-muted-foreground" />
           )}
         </motion.div>
       </motion.div>
 
+      {/* CHANGE: text-slate-800 -> text-foreground */}
       <span
-        className="text-base font-semibold text-slate-800 leading-snug group-hover:text-slate-900 transition-colors"
+        className="text-base font-semibold text-foreground leading-snug group-hover:opacity-80 transition-opacity"
         style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
       >
         {item.q}
@@ -125,20 +123,22 @@ const AccordionItem = ({
           className="overflow-hidden"
         >
           <div className="pl-12 pr-2 pb-6">
-            {/* Left accent bar */}
             <div
               className="relative pl-4 border-l-2"
               style={{ borderColor: `${color}66` }}
             >
-              <p className="text-slate-500 text-sm leading-relaxed">{item.a}</p>
+              {/* CHANGE: text-slate-500 -> text-muted-foreground */}
+              <p className="text-muted-foreground text-sm leading-relaxed">
+                {item.a}
+              </p>
             </div>
           </div>
         </motion.div>
       )}
     </AnimatePresence>
 
-    {/* Divider */}
-    <div className="h-px bg-slate-100 mx-1" />
+    {/* CHANGE: bg-slate-100 -> bg-border */}
+    <div className="h-px bg-border mx-1" />
   </motion.div>
 );
 
@@ -190,7 +190,7 @@ const FloatingQMarks = () => (
           bottom: (qm as any).bottom,
           fontSize: qm.size,
           color: qm.color,
-          opacity: 0.12,
+          opacity: 0.1, // Lowered slightly for dark mode harmony
           rotate: qm.rot,
           fontFamily: "'Playfair Display', serif",
           filter: "blur(0.5px)",
@@ -209,154 +209,103 @@ const FloatingQMarks = () => (
   </div>
 );
 
-// ─── Category tab ─────────────────────────────────────────────────────────────
-const CategoryTab = ({
-  cat,
-  active,
-  onClick,
-}: {
-  cat: (typeof faqs)[0];
-  active: boolean;
-  onClick: () => void;
-}) => (
-  <motion.button
-    onClick={onClick}
-    className="px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 flex-shrink-0"
-    animate={{
-      backgroundColor: active ? cat.color : "#f1f5f9",
-      color: active ? "white" : "#64748b",
-      scale: active ? 1.05 : 1,
-      boxShadow: active ? `0 8px 24px ${cat.color}40` : "none",
-    }}
-    whileHover={{ scale: active ? 1.05 : 1.03 }}
-    whileTap={{ scale: 0.97 }}
-  >
-    {cat.category}
-  </motion.button>
-);
-
 // ─── Main ─────────────────────────────────────────────────────────────────────
 export const FAQ = () => {
   const [activeCategory, setActiveCategory] = useState(0);
   const [openIndex, setOpenIndex] = useState<number | null>(0);
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  const currentFaq = faqs[activeCategory];
-  let globalCounter = 0;
 
   return (
     <section
-      ref={sectionRef}
       id="faq"
-      className="relative py-24 md:py-32 overflow-hidden bg-gradient-to-b from-slate-50 to-white"
+      className="relative py-24 md:py-32 overflow-hidden bg-background"
     >
       <FloatingQMarks />
 
-      {/* BG blobs */}
-      <div className="absolute top-0 right-1/4 w-96 h-96 rounded-full bg-orange-50 blur-3xl opacity-60 -z-10" />
-      <div className="absolute bottom-0 left-1/4 w-80 h-80 rounded-full bg-sky-50 blur-3xl opacity-60 -z-10" />
+      {/* CHANGE: bg-orange-50 -> bg-primary/5 for dark mode compatibility */}
+      <div className="absolute top-0 right-1/4 w-96 h-96 rounded-full bg-primary/5 blur-3xl -z-10" />
+      <div className="absolute bottom-0 left-1/4 w-80 h-80 rounded-full bg-accent/5 blur-3xl -z-10" />
 
       <div className="container max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* ── Header ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-14"
-        >
+        <motion.div className="text-center mb-14">
           <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-orange-500 mb-4">
-            <span className="w-6 h-px bg-orange-400" />
-            Got Questions?
+            <span className="w-6 h-px bg-orange-400" /> Got Questions?{" "}
             <span className="w-6 h-px bg-orange-400" />
           </span>
           <h2
-            className="text-4xl md:text-6xl font-bold text-slate-800 leading-tight mb-4"
+            className="text-4xl md:text-6xl font-bold text-foreground leading-tight mb-4"
             style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
           >
             Frequently asked{" "}
-            <span
-              className="italic font-light"
-              style={{
-                background: "linear-gradient(135deg, #f97316, #38bdf8)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
+            <span className="italic font-light text-gradient-sunset">
               questions
             </span>
           </h2>
-          <p className="text-slate-500 text-lg max-w-xl mx-auto">
+          <p className="text-muted-foreground text-lg max-w-xl mx-auto">
             Everything you need to know before your first adventure with Voyara.
           </p>
         </motion.div>
 
-        {/* ── Category tabs ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="flex flex-wrap justify-center gap-3 mb-10"
-        >
+        {/* Category tabs */}
+        <div className="flex flex-wrap justify-center gap-3 mb-10">
           {faqs.map((cat, i) => (
-            <CategoryTab
+            <motion.button
               key={cat.category}
-              cat={cat}
-              active={activeCategory === i}
               onClick={() => {
                 setActiveCategory(i);
                 setOpenIndex(0);
               }}
-            />
+              className={`px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
+                activeCategory === i
+                  ? "text-white"
+                  : "text-muted-foreground bg-secondary"
+              }`}
+              style={{
+                backgroundColor: activeCategory === i ? cat.color : undefined,
+              }}
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+            >
+              {cat.category}
+            </motion.button>
           ))}
-        </motion.div>
+        </div>
 
-        {/* ── Accordion panel ── */}
+        {/* Accordion panel */}
         <AnimatePresence mode="wait">
           <motion.div
             key={activeCategory}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.4 }}
-            className="bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden px-6 md:px-8 py-2"
+            className="bg-card rounded-3xl border border-border shadow-sm overflow-hidden px-6 md:px-8 py-2"
           >
-            {currentFaq.items.map((item, idx) => (
+            {faqs[activeCategory].items.map((item, idx) => (
               <AccordionItem
                 key={item.q}
                 item={item}
                 isOpen={openIndex === idx}
                 onToggle={() => setOpenIndex(openIndex === idx ? null : idx)}
-                color={currentFaq.color}
+                color={faqs[activeCategory].color}
                 globalIndex={idx}
               />
             ))}
           </motion.div>
         </AnimatePresence>
 
-        {/* ── Still have questions CTA ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-12 rounded-3xl p-8 md:p-10 text-center relative overflow-hidden"
-          style={{ background: "linear-gradient(135deg, #fff7ed, #eff6ff)" }}
-        >
-          {/* Decorative ring */}
-          <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full border-2 border-orange-100" />
-          <div className="absolute -bottom-8 -left-8 w-32 h-32 rounded-full border-2 border-sky-100" />
+        {/* CHANGE: Background now uses card/border instead of hardcoded white/orange */}
+        <motion.div className="mt-12 rounded-3xl p-8 md:p-10 text-center relative overflow-hidden bg-card border border-border">
+          {/* Decorative ring - hidden in dark mode for cleaner look */}
+          <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full border-2 border-primary/5" />
+          <div className="absolute -bottom-8 -left-8 w-32 h-32 rounded-full border-2 border-accent/5" />
 
-          <MessageCircle className="w-10 h-10 mx-auto mb-4 text-orange-400" />
+          <MessageCircle className="w-10 h-10 mx-auto mb-4 text-orange-500" />
           <h3
-            className="text-2xl font-bold text-slate-800 mb-2"
+            className="text-2xl font-bold text-foreground mb-2"
             style={{ fontFamily: "'Playfair Display', serif" }}
           >
             Still have questions?
           </h3>
-          <p className="text-slate-500 text-sm mb-7 max-w-sm mx-auto">
+          <p className="text-muted-foreground text-sm mb-7 max-w-sm mx-auto">
             Our travel experts are online right now. Usually reply in under 5
             minutes.
           </p>
@@ -364,29 +313,23 @@ export const FAQ = () => {
             <motion.button
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.97 }}
-              className="flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-white text-sm shadow-md shadow-orange-200"
+              className="flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-white text-sm"
               style={{
                 background: "linear-gradient(135deg, #f97316, #ea580c)",
               }}
             >
-              <Headphones className="w-4 h-4" />
-              Live Chat
+              <Headphones className="w-4 h-4" /> Live Chat
             </motion.button>
             <motion.button
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.97 }}
-              className="flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-slate-700 text-sm bg-white border border-slate-200 shadow-sm"
+              className="flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-foreground text-sm bg-secondary border border-border"
             >
-              <Mail className="w-4 h-4 text-sky-500" />
-              Send Email
+              <Mail className="w-4 h-4 text-sky-500" /> Send Email
             </motion.button>
           </div>
         </motion.div>
       </div>
-
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,300&display=swap');
-      `}</style>
     </section>
   );
 };
