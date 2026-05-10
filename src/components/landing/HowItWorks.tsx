@@ -179,6 +179,8 @@ export const HowItWorks = () => {
     offset: ["start center", "end center"],
   });
   const progressWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+  const scrollTo = (id: string) =>
+    document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
 
   return (
     <section
@@ -265,6 +267,7 @@ export const HowItWorks = () => {
           <motion.button
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.97 }}
+            onClick={() => scrollTo("#contact")}
             className="flex items-center gap-2 px-8 py-4 rounded-2xl font-bold text-white shadow-lg shadow-orange-500/20 text-base"
             style={{ background: "linear-gradient(135deg, #f97316, #ea580c)" }}
           >
