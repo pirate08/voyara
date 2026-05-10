@@ -389,6 +389,7 @@ export const Destinations = () => {
             whileTap={{ scale: 0.97 }}
             className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl font-semibold text-white shadow-lg shadow-orange-200 text-base"
             style={{ background: "linear-gradient(135deg, #f97316, #ea580c)" }}
+            onClick={() => (window.location.href = "/destinations")}
           >
             <Plane className="w-4 h-4" />
             View all destinations

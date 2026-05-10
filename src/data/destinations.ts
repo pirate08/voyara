@@ -127,7 +127,7 @@ export const destinations: Destination[] = [
   },
   {
     id: "patagonia",
-    img: "https://images.unsplash.com/photo-1517700299610-9616d9792580?w=1200&q=80",
+    img: "https://images.unsplash.com/photo-1600211906168-fbc6df476b1c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cGF0YWdvbmlhJTIwYXJnZW50aW5hfGVufDB8fDB8fHww",
     name: "Patagonia",
     country: "Argentina",
     desc: "Untamed wilderness at the end of the world.",

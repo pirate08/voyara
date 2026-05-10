@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Compass, Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const links = [
   { label: "Destinations", href: "#destinations" },
@@ -15,6 +16,17 @@ export const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [dark, setDark] = useState(false);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleLogoClick = () => {
+    if (location.pathname === "/") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      navigate("/");
+    }
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30);
@@ -61,7 +73,7 @@ export const Navbar = () => {
         <nav className="flex items-center justify-between px-2 md:px-4">
           {/* Logo */}
           <button
-            onClick={() => scrollTo("#hero")}
+            onClick={handleLogoClick}
             className="flex items-center gap-2 group"
           >
             <div
