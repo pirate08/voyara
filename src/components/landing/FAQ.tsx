@@ -213,6 +213,8 @@ const FloatingQMarks = () => (
 export const FAQ = () => {
   const [activeCategory, setActiveCategory] = useState(0);
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const scrollTo = (id: string) =>
+    document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
 
   return (
     <section
@@ -313,6 +315,7 @@ export const FAQ = () => {
             <motion.button
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.97 }}
+              onClick={() => scrollTo("#contact")}
               className="flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-white text-sm"
               style={{
                 background: "linear-gradient(135deg, #f97316, #ea580c)",
@@ -323,6 +326,7 @@ export const FAQ = () => {
             <motion.button
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.97 }}
+              onClick={() => scrollTo("#contact")}
               className="flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-foreground text-sm bg-secondary border border-border"
             >
               <Mail className="w-4 h-4 text-sky-500" /> Send Email
