@@ -1,6 +1,7 @@
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { MapPin, ArrowUpRight, Plane } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 interface Destination {
@@ -89,6 +90,7 @@ const tickerItems = [
 
 // ─── 3D Tilt Card ─────────────────────────────────────────────────────────────
 const TiltCard = ({ d, i }: { d: Destination; i: number }) => {
+  const navigate = useNavigate();
   const ref = useRef<HTMLDivElement>(null);
   const [hovered, setHovered] = useState(false);
 
@@ -116,6 +118,12 @@ const TiltCard = ({ d, i }: { d: Destination; i: number }) => {
     setHovered(false);
   };
 
+  const slug = d.name.toLowerCase().replace(/ /g, "-");
+
+  const handleNavigate = () => {
+    navigate(`/destinations/${slug}`);
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 60, rotateX: 20 }}
@@ -123,6 +131,7 @@ const TiltCard = ({ d, i }: { d: Destination; i: number }) => {
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.7, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
       style={{ perspective: "1000px" }}
+      onClick={handleNavigate}
     >
       <motion.div
         ref={ref}
@@ -186,6 +195,10 @@ const TiltCard = ({ d, i }: { d: Destination; i: number }) => {
           }}
           transition={{ duration: 0.3 }}
           whileHover={{ scale: 1.15, backgroundColor: d.color }}
+          onClick={(e) => {
+            e.stopPropagation();
+            handleNavigate();
+          }}
         >
           <ArrowUpRight className="w-4 h-4" />
         </motion.div>
@@ -220,9 +233,10 @@ const TiltCard = ({ d, i }: { d: Destination; i: number }) => {
               {d.price}
             </span>
             <motion.span
-              className="text-sm font-medium flex items-center gap-1"
+              className="text-sm font-medium flex items-center gap-1 cursor-pointer"
               animate={{ x: hovered ? 4 : 0 }}
               transition={{ duration: 0.3 }}
+              onClick={handleNavigate}
             >
               View details →
             </motion.span>
