@@ -415,18 +415,24 @@ export const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-orange-200 rounded-full px-4 py-2 mb-8 w-fit shadow-sm"
+              className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm border border-orange-200 rounded-full px-4 py-2 mb-8 w-fit shadow-sm"
             >
-              <div className="flex -space-x-1">
-                {["#f97316", "#fb923c", "#fdba74"].map((color, i) => (
-                  <div
+              <div className="flex -space-x-2">
+                {[
+                  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=100&auto=format&fit=crop",
+                  "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=100&auto=format&fit=crop",
+                  "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=100&auto=format&fit=crop",
+                ].map((src, i) => (
+                  <motion.img
                     key={i}
-                    className="w-6 h-6 rounded-full border-2 border-white"
-                    style={{ backgroundColor: color }}
+                    src={src}
+                    alt={`Traveler ${i + 1}`}
+                    className="w-7 h-7 rounded-full border-2 border-white object-cover shadow-sm"
+                    whileHover={{ scale: 1.2, zIndex: 10 }}
                   />
                 ))}
               </div>
-              <span className="text-sm font-semibold text-slate-700">
+              <span className="text-sm font-semibold text-slate-700 ml-1">
                 Trusted by 10,000+ travelers
               </span>
               <Star className="w-4 h-4 fill-orange-400 text-orange-400" />
