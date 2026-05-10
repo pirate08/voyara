@@ -8,6 +8,7 @@ import { Contact } from "@/components/landing/Contact";
 import { CtaBanner, Footer } from "@/components/landing/CtaFooter";
 import { TrustBar } from "@/components/landing/TrustBar";
 import { HowItWorks } from "@/components/landing/HowItWorks";
+import { FAQ } from "@/components/landing/FAQ";
 
 const Index = () => {
   return (
@@ -21,6 +22,7 @@ const Index = () => {
         <WhyUs />
         <Packages />
         <Testimonials />
+        <FAQ />
         <Contact />
         <CtaBanner />
       </main>
