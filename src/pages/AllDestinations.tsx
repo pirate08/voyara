@@ -4,10 +4,12 @@ import { Search, SlidersHorizontal, MapPin, X } from "lucide-react";
 import { destinations } from "../data/destinations";
 import { Navbar } from "../components/landing/Navbar";
 import { Footer } from "../components/landing/CtaFooter";
+import { useNavigate } from "react-router-dom";
 
 export const AllDestinations = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeTag, setActiveTag] = useState("All");
+  const navigate = useNavigate();
 
   const tags = ["All", ...new Set(destinations.map((d) => d.tag))];
 
@@ -145,9 +147,12 @@ const DestinationCard = ({ d }: { d: any }) => (
           <span className="text-lg font-bold" style={{ color: d.color }}>
             {d.price}
           </span>
-          <span className="text-xs text-white/60 group-hover:text-white transition-colors">
+          <button
+            onClick={() => (window.location.href = `/destinations/${d.id}`)}
+            className="text-xs text-white/60 group-hover:text-white transition-colors"
+          >
             Explore →
-          </span>
+          </button>
         </div>
       </div>
     </div>
