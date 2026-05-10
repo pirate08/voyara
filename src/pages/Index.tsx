@@ -1,0 +1,28 @@
+import { Navbar } from "@/components/landing/Navbar";
+import { Hero } from "@/components/landing/Hero";
+import { Destinations } from "@/components/landing/Destinations";
+import { WhyUs } from "@/components/landing/WhyUs";
+import { Packages } from "@/components/landing/Packages";
+import { Testimonials } from "@/components/landing/Testimonials";
+import { Contact } from "@/components/landing/Contact";
+import { CtaBanner, Footer } from "@/components/landing/CtaFooter";
+
+const Index = () => {
+  return (
+    <div className="min-h-screen bg-background">
+      <Navbar />
+      <main>
+        <Hero />
+        <Destinations />
+        <WhyUs />
+        <Packages />
+        <Testimonials />
+        <Contact />
+        <CtaBanner />
+      </main>
+      <Footer />
+    </div>
+  );
+};
+
+export default Index;
